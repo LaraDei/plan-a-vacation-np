@@ -1,0 +1,50 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #e7ecd1;
+  }
+  h1{
+    text-align: center;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  label{
+    padding-top: 20px;
+    font-weight: bold;
+  }
+  
+  button, input[type="text"] {
+    padding: 5px;
+  }
+
+  button, input[type="submit"]{
+  width: 200px;
+  margin-top: 30px;
+  align-self: center;
+  padding: 10px 0;
+  font-weight: bold;
+  }
+  
+  button:hover {
+    cursor: pointer;
+  }
+  
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .error-message {
+      color: red;
+  }
+  
+  .hidden {
+    display: none;
+  }
