@@ -32,15 +32,25 @@ function displayResults(responseJson) {
   $('#results').removeClass('hidden');
 };
 
+function cleanObj(params){
+   for(var key in params){
+     if(params[key].length === 0){
+       delete params[key];
+     }
+   }
+    return params;
+}
+
 function getParks(states, maxResults, searchTerm) {
   const params = {
-    stateCode: states,
-    limit: maxResults,
-    q: searchTerm,
     api_key: apiKey,
-    
+    q: searchTerm,
+    limit: maxResults,
+    stateCode: states,
   };
-  const queryString = formatQueryParams(params)
+
+
+  const queryString = formatQueryParams(cleanObj(params))
   const url = searchURL + '?' + queryString;
 
   console.log(url);
