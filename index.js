@@ -67,9 +67,14 @@ function getParks(states, maxResults, searchTerm) {
       }
       throw new Error(response.statusText);
     })
-.then(responseJson => displayResults(responseJson))
+    .then(responseJson =>  {
+      if(responseJson.data.length === 0) {
+        $('#js-error-message').text(`Sorry! Looks like there aren't any results matching ${searchTerm} in ${states}. Please try again.`)
+      } 
+      displayResults(responseJson);
+    })
     .catch(err => {
-      $('#js-error-message').text(`Something went wrong: ${err.message}. Please try again with a different keyword or state`);
+      $('#js-error-message').text(`Something went wrong: ${err.message}`);
       $('#results-list').empty();
     });
 }
