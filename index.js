@@ -15,25 +15,19 @@ function displayResults(responseJson) {
   console.log(responseJson);
   
   $('#results-list').empty();
-  if (responseJson.data.length === 0){
-    $('#results-list').append(
-        '<h3>Zero search results</h3>'
-    )
-    
-   }
-  // iterate through the items array
+
   for (let i = 0; i < responseJson.data.length; i++){    
-      for(let i = 0; i< responseJson.data[i].addresses.length; i++){
-    // for each object in the data array, add a list item to the results 
+
+    // // for each object in the data array, add a list item to the results 
     //list with the title, address, description, and url
     $('#results-list').append(
-      `<li><h3>${responseJson.data[i].fullName}</h3>
-      <p>${responseJson.data[i].addresses[0].line1}, ${responseJson.data[i].addresses[0].city}, ${responseJson.data[i].addresses[0].stateCode} ${responseJson.data[i].addresses[0].postalCode} </p>
+      `<li><h3><a href='${responseJson.data[i].url}'>${responseJson.data[i].fullName}</a></h3>
+      <p>${responseJson.data[i].states}</p>
       <p>${responseJson.data[i].description}</p>
-      <a href='${responseJson.data[i].url}'>${responseJson.data[i].url}</a>
       </li>`
     )
-    }};
+  
+};
   //display the results section  
   $('#results').removeClass('hidden');
 };
@@ -49,10 +43,10 @@ function cleanObj(params){
 
 function getParks(states, maxResults, searchTerm) {
   const params = {
-    q: searchTerm,
     limit: maxResults,
-    stateCode: states,
     api_key: apiKey,
+    stateCode: states,
+    q: searchTerm,
   };
 
 
@@ -68,9 +62,9 @@ function getParks(states, maxResults, searchTerm) {
       }
       throw new Error(response.statusText);
     })
-    .then(responseJson => displayResults(responseJson))
+.then(responseJson => displayResults(responseJson))
     .catch(err => {
-      $('#js-error-message').text(`Something went wrong: ${err.message}`);
+      $('#js-error-message').text(`Something went wrong: ${err.message}. Please try again with a different keyword or state`);
       $('#results-list').empty();
     });
 }
