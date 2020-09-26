@@ -21,6 +21,7 @@ function displayResults(responseJson) {
     if(!responseJson.data[i].addresses[0]){
       address = responseJson.data[i].states
     } else {address =`${responseJson.data[i].addresses[0].line1}, ${responseJson.data[i].addresses[0].city}, ${responseJson.data[i].addresses[0].stateCode} ${responseJson.data[i].addresses[0].postalCode}`
+    }
     // // for each object in the data array, add a list item to the results 
     //list with the title, address, description, and url
     
@@ -30,7 +31,7 @@ function displayResults(responseJson) {
       <p>${responseJson.data[i].description}</p>
       </li>`
     )
-    }
+    
 };
   //display the results section  
   $('#results').removeClass('hidden');
