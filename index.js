@@ -23,6 +23,7 @@ function displayResults(responseJson) {
    }
   // iterate through the items array
   for (let i = 0; i < responseJson.data.length; i++){    
+      for(let i = 0; i< responseJson.data[i].addresses.length; i++){
     // for each object in the data array, add a list item to the results 
     //list with the title, address, description, and url
     $('#results-list').append(
@@ -32,7 +33,7 @@ function displayResults(responseJson) {
       <a href='${responseJson.data[i].url}'>${responseJson.data[i].url}</a>
       </li>`
     )
-    };
+    }};
   //display the results section  
   $('#results').removeClass('hidden');
 };
@@ -48,10 +49,10 @@ function cleanObj(params){
 
 function getParks(states, maxResults, searchTerm) {
   const params = {
-    api_key: apiKey,
     q: searchTerm,
     limit: maxResults,
     stateCode: states,
+    api_key: apiKey,
   };
 
 
